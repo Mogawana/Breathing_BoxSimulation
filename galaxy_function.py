@@ -250,7 +250,7 @@ def total_mass_metalpop(zg, sfr, R, t):
     # total metal mass of each stellar population
     return zg*(1 - R)*sfr*t
 
-def star_from_rate(alp_e, mg, mc, tdy):
+def star_form_rate(alp_e, mg, mc, tdy):
     """"This function calculates the star fromation rate 
     in each time step.
 
