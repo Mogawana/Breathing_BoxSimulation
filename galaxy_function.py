@@ -249,3 +249,23 @@ def total_mass_metalpop(zg, sfr, R, t):
 
     # total metal mass of each stellar population
     return zg*(1 - R)*sfr*t
+
+
+class simulation:
+    def __init__(self, t, Mgas, 
+                 Zgas, Mstar, 
+                 Zstar, Mzgas, 
+                 Mzstar, MstarSP, 
+                 ZstarSP):
+
+        """Initial conditions place holder class object to initialize and
+        evolve with the simulation"""
+        self.t        = t 
+        self.Mgas     = Mgas     # total mass of gas
+        self.Zgas     = Zgas     # total gas metalicity
+        self.Mstar    = Mstar    # total stellar mass
+        self.Zstar    = Zstar    # total stellar metallicity
+        self.Mzgas    = Mzgas    # total metal mass in gas phase
+        self.Mzstar   = Mzstar   # total metal mass in stellar phase
+        self.MstarSP  = MstarSP  # total mass of stellar population
+        self.ZstarSP  = ZstarSP  # total metal mass in stellar population
