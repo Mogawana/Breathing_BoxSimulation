@@ -250,6 +250,49 @@ def total_mass_metalpop(zg, sfr, R, t):
     # total metal mass of each stellar population
     return zg*(1 - R)*sfr*t
 
+def star_from_rate(alp_e, mg, mc, tdy):
+    """"This function calculates the star fromation rate 
+    in each time step.
+
+    Parameters
+    ----------
+    apl_e :float
+            star formation effeciency
+    mg    :float
+            total gas mass.
+    mc    :float
+            critical mass threshold
+    tdy   :float
+            disc dynamical time
+
+    Return
+    ---------
+    float:
+        Star formation rate at each time step """
+
+    sfr = ( alp_e*(mg - mc) ) / tdy
+
+    return sfr
+
+
+def infall_rate(R, sfr):
+    """"This function calculates the star fromation rate 
+    in each time step.
+
+    Parameters
+    ----------
+    R   :float
+         fractional gas mass returned by SNe
+    sfr :float
+         star formation rate
+
+    Return
+    ---------
+    float:
+        infall rate of accreting gas """
+    bta = (1 - R)*sfr
+
+    return bta
 
 class simulation:
     def __init__(self, t, Mgas, 
