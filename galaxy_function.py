@@ -299,7 +299,8 @@ class simulation:
                  Zgas, Mstar, 
                  Zstar, Mzgas, 
                  Mzstar, MstarSP, 
-                 ZstarSP, MzstarSP, SFR):
+                 ZstarSP, MzstarSP, 
+                 SFR, beta):
 
         """Initial conditions place holder class object to initialize and
         evolve with the simulation"""
@@ -314,3 +315,4 @@ class simulation:
         self.ZstarSP  = ZstarSP  # metallicity in stellar population
         self.MzstarSP = MzstarSP # total metal mass in stellar population
         self.SFR      = SFR      # star formation rate
+        self.beta     = beta     # infall rate
