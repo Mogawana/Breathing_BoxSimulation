@@ -295,6 +295,41 @@ def infall_rate(R, sfr):
     return bta
 
 class simulation:
+    """Initial conditions place holder class object to initialize and
+    evolve with the simulation
+
+    Parameters
+    ----------
+    t: float
+        integration time
+    Mgas: float
+        total mass of gas
+    Zgas: float
+        total gas metalicity
+    Mstar: float 
+        total stellar mass
+    Zstar: float 
+        total stellar metallicity
+    Mzgas: float
+        total metal mass in gas phase
+    Mzstar: float
+        total metal mass in stellar phase
+    MstarSP: float 
+        total mass of stellar population
+    ZstarSP: float
+        metallicity in stellar population
+    MzstarSP: float 
+        total metal mass in stellar population
+    SFR : float 
+        star formation rate
+    beta: float 
+        infall rate
+
+    Return
+    ---------
+    None
+    """
+
     def __init__(self, t, Mgas, 
                  Zgas, Mstar, 
                  Zstar, Mzgas, 
@@ -302,17 +337,15 @@ class simulation:
                  ZstarSP, MzstarSP, 
                  SFR, beta):
 
-        """Initial conditions place holder class object to initialize and
-        evolve with the simulation"""
         self.t        = t 
-        self.Mgas     = Mgas     # total mass of gas
-        self.Zgas     = Zgas     # total gas metalicity
-        self.Mstar    = Mstar    # total stellar mass
-        self.Zstar    = Zstar    # total stellar metallicity
-        self.Mzgas    = Mzgas    # total metal mass in gas phase
-        self.Mzstar   = Mzstar   # total metal mass in stellar phase
-        self.MstarSP  = MstarSP  # total mass of stellar population
-        self.ZstarSP  = ZstarSP  # metallicity in stellar population
-        self.MzstarSP = MzstarSP # total metal mass in stellar population
-        self.SFR      = SFR      # star formation rate
-        self.beta     = beta     # infall rate
+        self.Mgas     = Mgas
+        self.Zgas     = Zgas
+        self.Mstar    = Mstar
+        self.Zstar    = Zstar
+        self.Mzgas    = Mzgas
+        self.Mzstar   = Mzstar
+        self.MstarSP  = MstarSP
+        self.ZstarSP  = ZstarSP
+        self.MzstarSP = MzstarSP
+        self.SFR      = SFR
+        self.beta     = beta
