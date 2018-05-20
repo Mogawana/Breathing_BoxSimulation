@@ -26,12 +26,12 @@ def enrich_gas(sfr, R, t):
     Return
     ---------
     float
-        Total remaining gas mass """
+        Total remaining gas mass 
 
     # Enrich the gas from SNe
-    Mg_e = (-sfr + R*sfr)*t
-
-    return Mg_e
+    Mgas = (-sfr + R*sfr)*t
+    """
+    return (-sfr + R*sfr)*t
 
 
 def remove_egas(sfr, alp, t):
@@ -50,12 +50,12 @@ def remove_egas(sfr, alp, t):
     Return
     ---------
     float
-        Total remaining gas mass """
+        Total remaining gas mass
 
     # Remove this newly-enriched, fully-mixed gas from the box
-    Mg_r = (- alp*sfr)*t
-
-    return Mg_r
+    Mgas = (- alp*sfr)*t
+    """
+    return (- alp*sfr)*t
 
 
 def gas_infall(sfr, bta, t):
@@ -73,14 +73,14 @@ def gas_infall(sfr, bta, t):
     Return
     ---------
     float
-        Total remaining gas mass """
+        Total remaining gas mass
 
     # Infall is assumed to come from outside the box,
     # and is added to the gas component
     # infall occurs after outflows in each timestep
-    Mg_i = (bta*sfr)*t
-
-    return Mg_i
+    Mgas = (bta*sfr)*t
+    """
+    return (bta*sfr)*t
 
 
 def total_stellar_mass(sfr, R, t):
@@ -99,9 +99,11 @@ def total_stellar_mass(sfr, R, t):
     Return
     ---------
     float
-        Total remaining stellar mass """
+        Total remaining stellar mass
 
     # Execute star formation and gas return from supernovae
+    Mstar = (sfr - R*sfr)*t
+    """
     return (sfr - R*sfr)*t
 
 
@@ -123,11 +125,11 @@ def enrich_metalgas(zg, sfr, yz, t):
     ---------
     float
         Total remaining metallicity in gas phase 
-    """
+    
     # enrich the gas with  new  metals
-    Mgz_e = (-zg*sfr + yz*sfr)*t
-
-    return Mgz_e
+    Mzgas = (-zg*sfr + yz*sfr)*t
+    """
+    return (-zg*sfr + yz*sfr)*t
 
 
 def remove_metalgas(zg, sfr, alp, t):
@@ -148,11 +150,11 @@ def remove_metalgas(zg, sfr, alp, t):
     ---------
     float
         Total remaining metallicity in gas phase 
-    """
+    
     # Remove this newly-enriched, fully-mixed gas from the box
-    Mgz_r = (- alp*zg*sfr)*t
-
-    return Mgz_r
+    Mzgas = (- alp*zg*sfr)*t
+    """
+    return (- alp*zg*sfr)*t
 
 
 def infall_metalgas(sfr, bta, znf, t):
@@ -171,14 +173,14 @@ def infall_metalgas(sfr, bta, znf, t):
     ---------
     float
         Total remaining metallicity in gas phase 
-    """
+    
     # Remove this newly-enriched, fully-mixed gas from the box
     # Infall is assumed to come from outside the box,
     # and is added to the gas component
     # infall occurs after outflows in each timestep
-    Mgz_i =(bta*znf*sfr)*t
-    
-    return Mgz_i
+    Mzgas =(bta*znf*sfr)*t
+    """
+    return (bta*znf*sfr)*t
 
 
 def metal_mass_starphase(zg, sfr, yz, t):
@@ -199,9 +201,11 @@ def metal_mass_starphase(zg, sfr, yz, t):
     Return
     ---------
     float
-        Total remaining metallicity in stellar phase """
+        Total remaining metallicity in stellar phase 
 
     # enrich the stars with  new  metals
+    Mzstar = (zg*sfr - yz*sfr)*t
+    """
     return (zg*sfr - yz*sfr)*t
 
 
@@ -221,9 +225,11 @@ def total_mass_starpop(sfr, R, t):
     Return
     ---------
     float:
-        Total remaining stellar mass population"""
+        Total remaining stellar mass population
 
     # total mass of each stellar population
+    MstarSP = (1 - R)*sfr*t
+    """
     return (1 - R)*sfr*t
 
 
@@ -245,9 +251,11 @@ def total_mass_metalpop(zg, sfr, R, t):
     Return
     ---------
     float:
-        Total remaining stellar metal mass population """
+        Total remaining stellar metal mass population
 
     # total metal mass of each stellar population
+    MzstarSP = zg*(1 - R)*sfr*t
+    """
     return zg*(1 - R)*sfr*t
 
 def star_form_rate(alp_e, mg, mc, tdy):
@@ -268,15 +276,15 @@ def star_form_rate(alp_e, mg, mc, tdy):
     Return
     ---------
     float:
-        Star formation rate at each time step """
+        Star formation rate at each time step
 
     sfr = ( alp_e*(mg - mc) ) / tdy
-
-    return sfr
+    """
+    return ( alp_e*(mg - mc) ) / tdy
 
 
 def infall_rate(R, sfr):
-    """"This function calculates the star fromation rate 
+    """This function calculates the star fromation rate 
     in each time step.
 
     Parameters
@@ -289,10 +297,10 @@ def infall_rate(R, sfr):
     Return
     ---------
     float:
-        infall rate of accreting gas """
-    bta = (1 - R)*sfr
-
-    return bta
+        infall rate of accreting gas
+    beta = bta = (1 - R)*sfr
+    """
+    return (1 - R)*sfr
 
 class simulation:
     """Initial conditions place holder class object to initialize and
