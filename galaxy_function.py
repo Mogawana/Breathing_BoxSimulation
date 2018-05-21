@@ -65,8 +65,7 @@ def gas_infall(bta, t):
 
     Parameters
     ----------
-    sfr:float
-        star-formation rate.
+    
     bta:float
         Infall rate
     t  :float
@@ -80,7 +79,7 @@ def gas_infall(bta, t):
     # Infall is assumed to come from outside the box,
     # and is added to the gas component
     # infall occurs after outflows in each timestep
-    Mgas = (bta*sfr)*t
+    Mgas = (bta)*t
     """
     return (bta)*t
 
@@ -167,8 +166,7 @@ def infall_metalgas(bta, znf, t):
 
     Parameters
     ----------
-    sfr:float
-        star-formation rate.
+    
     bta:float
         Infall rate
     znf:float
@@ -184,7 +182,7 @@ def infall_metalgas(bta, znf, t):
     # Infall is assumed to come from outside the box,
     # and is added to the gas component
     # infall occurs after outflows in each timestep
-    Mzgas =(bta*znf*sfr)*t
+    Mzgas =(bta*znf)*t
     """
     return (bta*znf)*t
 
