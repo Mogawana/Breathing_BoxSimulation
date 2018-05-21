@@ -13,6 +13,7 @@
 
 def enrich_gas(sfr, R, t):
     """This function executes star formation and gas return from supernovae.
+    And calculates the gas mass remaining
 
     Parameters
     ----------
@@ -58,8 +59,9 @@ def remove_egas(sfr, alp, t):
     return (- alp*sfr)*t
 
 
-def gas_infall(sfr, bta, t):
-    """This function calculates the infall gas mass from outside the box.
+def gas_infall(bta, t):
+    """This function calculates the total gas mass accreted 
+    from outside the box.
 
     Parameters
     ----------
@@ -80,12 +82,12 @@ def gas_infall(sfr, bta, t):
     # infall occurs after outflows in each timestep
     Mgas = (bta*sfr)*t
     """
-    return (bta*sfr)*t
+    return (bta)*t
 
 
 def total_stellar_mass(sfr, R, t):
-    """This function executes star formation and gas return from 
-    supernovae.
+    """This function calculates the mass of stars formed by exercuting
+    star formation and gas return.
 
     Parameters
     ----------
@@ -109,7 +111,8 @@ def total_stellar_mass(sfr, R, t):
 
 def enrich_metalgas(zg, sfr, yz, t):
     """This function calculates the new metal enrichment of gas by 
-    supernovae
+    supernovae.
+
     Parameters
     ----------
     zg :float
@@ -134,7 +137,8 @@ def enrich_metalgas(zg, sfr, yz, t):
 
 def remove_metalgas(zg, sfr, alp, t):
     """This function calculates fraction of the new metals removed from the 
-    gas by supernovae
+    gas by supernovae.
+
     Parameters
     ----------
     zg :float
@@ -157,8 +161,10 @@ def remove_metalgas(zg, sfr, alp, t):
     return (- alp*zg*sfr)*t
 
 
-def infall_metalgas(sfr, bta, znf, t):
-    """This function calculates fraction of the new metals removed from the gas by supernovae
+def infall_metalgas(bta, znf, t):
+    """This function calculates fraction of the new metals accreted
+    into the gas from outside the box.
+
     Parameters
     ----------
     sfr:float
@@ -180,12 +186,11 @@ def infall_metalgas(sfr, bta, znf, t):
     # infall occurs after outflows in each timestep
     Mzgas =(bta*znf*sfr)*t
     """
-    return (bta*znf*sfr)*t
+    return (bta*znf)*t
 
 
 def metal_mass_starphase(zg, sfr, yz, t):
-    """"This function executes new metal enrichment of gas by Super Novae
-    and infall gas from outside the box.
+    """"This function calculates the metal mass content trapped in stars.
 
     Parameters
     ----------
@@ -203,7 +208,7 @@ def metal_mass_starphase(zg, sfr, yz, t):
     float
         Total remaining metallicity in stellar phase 
 
-    # enrich the stars with  new  metals
+    # enriched stars with  new  metals
     Mzstar = (zg*sfr - yz*sfr)*t
     """
     return (zg*sfr - yz*sfr)*t
@@ -284,7 +289,7 @@ def star_form_rate(alp_e, mg, mc, tdy):
 
 
 def infall_rate(R, sfr):
-    """This function calculates the star fromation rate 
+    """This function calculates the gas infall rate in each
     in each time step.
 
     Parameters
