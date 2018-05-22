@@ -187,7 +187,7 @@ def infall_metalgas(bta, znf, t):
     return (bta*znf)*t
 
 
-def metal_mass_starphase(zg, sfr, yz, t):
+def metal_mass_starphase(zg, sfr, R, t):
     """"This function calculates the metal mass content trapped in stars.
 
     Parameters
@@ -196,8 +196,8 @@ def metal_mass_starphase(zg, sfr, yz, t):
         Gas metallicity
     sfr:float
         star-formation rate.
-    yz :float
-        Metal yield
+    R  :float
+        Super Novae returned fraction
     t  :float
         Integration time step
 
@@ -207,9 +207,9 @@ def metal_mass_starphase(zg, sfr, yz, t):
         Total remaining metallicity in stellar phase 
 
     # enriched stars with  new  metals
-    Mzstar = (zg*sfr - yz*sfr)*t
+    Mzstar = (zg*sfr - zg*R*sfr)*t
     """
-    return (zg*sfr - yz*sfr)*t
+    return (zg*sfr - zg*R*sfr)*t
 
 
 def total_mass_starpop(sfr, R, t):
@@ -305,7 +305,7 @@ def infall_rate(R, sfr):
     """
     return (1 - R)*sfr
 
-class simulation:
+class simulation(object):
     """Initial conditions place holder class object to initialize and
     evolve with the simulation
 
